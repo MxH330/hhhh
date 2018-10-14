@@ -1,0 +1,356 @@
+body,html,h1,h2,h3,h4,h5,h6,p,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td,img{
+	margin:0;
+	padding:0;
+}
+ul,li {
+	list-style:none;
+}
+b,strong{
+	font-weight:none;
+}
+a,u {
+	text-decoration:none;
+}
+h1,h2,h3,h4,h5,h6{
+	font-weight:normal;
+	font-size:16px;
+}
+i,em{
+	font-style:normal;
+}
+img{
+	border:none;
+}
+html,body{
+	height: 100%;
+	font: 12px/1.5 Arial, Helvetica, sans-serif;
+	color: #333;
+	background-color: #f2f2f2;
+}
+/* 注册头部 */
+.header{
+	width:100%;
+	height: 67px;
+	background: #333;
+}
+.headerLogo{
+	color: white;
+	font-size: 20px;
+	height: 67px;
+	line-height: 50px;
+	font-family: "arial";
+	padding-top: 14px;
+}
+.headerbox{
+	width:960px;
+	height: 67px;
+	margin:0 auto;
+}
+.logobox{
+	float: left;
+	width: 143px;
+	margin-right: 20px;
+	margin-left: 4px;
+	margin-top: 17px;
+}
+.logoname{
+	float: left;
+	width:90px;
+	height: 18px;
+	line-height: 18px;
+	font-size: 18px;
+	color:#fff;
+	margin-top: 27px;
+	padding-left: 18px;
+	border-left: 1px solid #ccc;
+}
+/* 注册内容部分 */
+.content{
+	width:960px;
+	height: 675px;
+	margin:0 auto;
+	margin-top: 30px;
+}
+.contentTop{
+	width:960px;
+	height: 35px;
+	line-height: 35px;
+}
+.tel,.email{
+	width:146px;
+	height: 35px;
+	background: #B40707;
+	margin-right: 12px;
+	font-size: 16px;
+	color:#fff;
+	float: left;
+	cursor: pointer;
+}
+.tel i{
+	display:block;
+	margin-top: 6px;
+	margin-left: 26px;
+	width: 14px;
+	height: 22px;
+	background: url(../images/reg-img01.png) no-repeat;
+	background-position: 0 -18px;
+	float: left;
+}
+.tel span{
+	display:block;
+	float:left;
+	height: 35px;
+	line-height: 35px;
+	margin-left: 26px;
+}
+.email{
+	background: #ccc;
+}
+.email i{
+	display: block;
+	margin-top: 9px;
+	margin-left: 26px;
+	width: 22px;
+	height: 17px;
+	margin-right: 16px;
+	background: url(../images/reg-img01.png) no-repeat;
+	background-position: 0 0px;
+	float: left;
+}
+.contentTop_right{
+	float: right;
+	font-size: 14px;
+}
+.contentTop_right a{
+	color: #0064cc;
+}
+.contentCenter{
+	width: 420px;
+	min-height: 462px;
+	padding: 30px 270px;
+	font-size: 14px;
+	color: #333;
+	background: #fff;
+}
+
+.contentCenter2{
+	display: none;
+}
+.contentCenter_first,.contentCenter_sec,.contentCenter_third,
+.contentCenter_fourth,.contentCenter_fifth,.contentCenter_sixth{
+	margin-top: 10px;
+	background: #f7f7f7;
+	height: 42px;
+	border: 1px solid #d9d9d9;
+	border-radius: 21px;
+	position: relative;
+}
+#contentInp_span1,#contentInp_span2,#contentInp_span3,#contentInp_span4{
+	font-size: 12px;
+	color:red;
+}
+#email_span1,#email_span2,#email_span3,#email_span4,#email_span5{
+	font-size: 12px;
+	color:red;
+}
+.contentCenter_jiange{
+	height: 20px;
+	padding-left: 18px;
+}
+.contentCenter_btn,.contentCenter_btn1{
+	width: 200px;
+	height: 40px;
+	background-color: #B40707;
+	border: none;
+	color: #fff;
+	border-radius: 20px;
+	margin:0 auto;
+	margin-left: 110px;
+	font-size: 12px;
+	outline: none;
+}
+.box-left{
+	width:123px;
+	height: 42px;
+	line-height: 42px;
+	text-align: center;
+	letter-spacing: 5px;
+	border-right: 1px solid #d9d9d9;
+	float: left;
+}
+.first-right,.first-right1{
+	width:262px;
+	height: 42px;
+	line-height: 42px;
+	padding-left: 16px;
+	float: left;
+	position: relative;
+}
+#first-rightSpan,#first-rightSpan1{
+	display: block;
+	width: 12px;
+	height: 6px;
+	background-image: url(../images/regiSpan1.png);
+	background-size: cover;
+	float: right;
+	margin-top: 18px;
+	cursor: pointer;
+}
+/* 国家选择 */
+.first-rightarea,.first-rightarea1{
+	width:219px;
+	height: 188px;
+	overflow-x: auto;
+	background: #fff;
+	color:#333;
+	font-size: 14px;
+	position: absolute;
+	left:0px;
+	top: 36px;
+	z-index: 10;
+	border-radius: 4px;
+	box-shadow: 3px 5px 15px #ccc;
+	display: none;
+}
+.first-right_ul li,.first-right_ul1 li{
+	width:160px;
+	height: 30px;
+	line-height: 30px;
+	border-bottom:1px solid #ccc;
+	margin-left: 16px;
+	cursor: pointer;
+}
+.first-right_ul li:hover{
+	background: #87CEEB;
+}
+
+.contentCenter_sec{
+	position: relative;
+}
+.sec-left,.sec-left1{
+	width:117px;
+	height: 42px;
+	line-height: 42px;
+	text-align: center;
+	font-size: 15px;
+	border-right: 1px solid #d9d9d9;
+	float: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-left: 6px;
+	position: relative;
+}
+
+#sec-leftSpan{
+	display: block;
+	width: 12px;
+	height: 6px;
+	background-image: url(../images/regiSpan2.png);
+	background-size: cover;
+	float: right;
+	position: absolute;
+	right: 3px;
+	top:17px;
+	z-index: 10;
+	cursor: pointer;
+}
+.sec_leftarea{
+	width:200px;
+	height: 188px;
+	overflow-x: auto;
+	background: #fff;
+	color:#333;
+	font-size: 14px;
+	position: absolute;
+	left:15px;
+	top: 30px;
+	z-index: 1000;
+	border-radius: 4px;
+	box-shadow: 3px 5px 15px #ccc;
+	display: none;
+}
+.sec_left_ul li{
+	width:185px;
+	height: 30px;
+	line-height: 30px;
+	border-bottom:1px solid #ccc;
+	margin-left: 16px;
+	cursor: pointer;
+}
+.sec_left_ul li:hover{
+	background: #87CEEB;
+}
+.sec_form{
+	width:270px;
+	height: 42px;
+	line-height: 42px;
+	float: left;
+}
+#sec_inp1,#sec_inp2,#sec_inp3,#sec_inp4,#sec_inp5,
+#sec_inp6,#sec_inp7,#sec_inp8,#sec_inp9,#sec_inp10,
+#sec_inp11,#sec_inp12{
+	width:146px;
+	height: 28px;
+	line-height: 28px;
+	font-size: 14px;
+	padding-left: 16px;
+	border:none;
+	background: #f7f7f7;
+	outline: none;
+	float: left;
+	margin-top: 7px;
+} 
+#sec_inp1::-webkit-input-placeholder,#sec_inp2::-webkit-input-placeholder,
+#sec_inp3::-webkit-input-placeholder,#sec_inp4::-webkit-input-placeholder,#sec_inp5::-webkit-input-placeholder,#sec_inp10::-webkit-input-placeholder,
+#sec_inp6::-webkit-input-placeholder,#sec_inp7::-webkit-input-placeholder,#sec_inp8::-webkit-input-placeholder,#sec_inp9::-webkit-input-placeholder,
+#sec_inp11::-webkit-input-placeholder,#sec_inp12::-webkit-input-placeholder{
+	font-size: 14px;
+	color:#ccc;
+}
+.yanzhengma,.yanzhengma1{
+	width:100px;
+	height: 36px;
+	float: right;
+	margin-top: 2px;
+	margin-left: 3px;
+	background: pink;
+	font-size: 26px;
+	font-weight: bold;
+	text-align: center;
+	/* opacity: 0.6; */
+	cursor: pointer;
+	font-style: italic;
+}
+
+.yanzhengbox{
+	width:90px;
+	height: 42px;
+	line-height: 42px;
+	text-align: center;
+	float: right;
+}
+.yanzhengbox a{
+	color: #007dff;
+	cursor: pointer;
+	font-size: 14px;
+}
+.contentbottom{
+	width:960px;
+	height: 48px;
+	margin:30px 0;
+	text-align: center;
+}
+.bottom_box1{
+	line-height: 24px;
+	margin: 0 auto;
+}
+.bottom_box1 a{
+	font-size: 12px;
+	color: #999;
+	padding:0 10px;
+}
+.bottom_box2 p{
+	font-size: 12px;
+	color:#999;
+}

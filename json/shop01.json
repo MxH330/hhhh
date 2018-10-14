@@ -1,0 +1,34 @@
+{
+    "msg": 200,
+    "data": [{
+            "img":"images/shopcar01.jpg",
+            "name": "荣耀10 GT游戏加速 AIS手持夜景 AI摄影手机 6GB+64GB 幻影蓝 全网通 双卡双待 荣耀10GT",
+            "price": 2299,
+            "color":1
+        },
+        {
+            "img":"images/shopcar02.jpg",            
+            "name": "荣耀10 GT游戏加速 AIS手持夜景 AI摄影手机 6GB+64GB 幻影紫 全网通 双卡双待 荣耀10GT",
+            "price": 2299,
+            "color":2
+        },
+        {
+            "img":"images/shopcar03.jpg",
+            "name": "荣耀10 GT游戏加速 AIS手持夜景 AI摄影手机 6GB+64GB 幻影蓝 全网通 双卡双待 荣耀10GT",
+            "price": 2299,
+            "color":3
+        },
+        {
+            "img":"images/shopcar04.jpg",
+            "name": "荣耀10 GT游戏加速 AIS手持夜景 AI摄影手机 6GB+64GB 幻影紫 全网通 双卡双待 荣耀10GT",
+            "price": 2299,
+            "color":4
+        },
+        {
+            "img":"images/shopcar05.jpg",
+            "name": "荣耀10 GT游戏加速 AIS手持夜景 AI摄影手机 6GB+64GB 幻影紫 全网通 双卡双待 荣耀10GT",
+            "price": 2299,
+            "color":5
+        }
+    ]
+}

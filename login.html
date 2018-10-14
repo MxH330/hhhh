@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录页面</title>
+    <link rel="shortcut icon" href="ico/favicon.ico">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <!-- 登录头部 -->
+    <div class="header">
+        <div class="headerbox">
+            <div class="logobox">
+                <a href="index1.html"><img src="images/HUAWEI.png" alt=""></a> 
+            </div>
+            <div class="logoname">华为商城</div>
+        </div>
+    </div>
+    <!--警告提示部分-->
+    <div class="tipbox">
+        <span id="tipbox_1">
+            依据《网络安全法》，为保障您的帐号安全与正常使用，请尽快绑定您的手机号，感谢您的理解及支持！
+        </span>
+    </div>
+    <!-- 主要内容部分 -->
+    <div class="content">
+        <div class="loginBox">
+            <div class="login">
+                <div class="loginCenter_top">
+                    <span class="loginCenter_span1">账号登录</span>        
+                    <span class="loginCenter_span2">扫码登录</span>
+                </div>
+                <div class="loginCenter_center1">
+                    <div class="login_form">
+                        <form action="" class="loginForm" autocomplete="off" onsubmit="return false">
+                            <input type="text" placeholder="手机号/邮箱地址" class="inp1"><span class = 'span1'></span>
+                            <input type="password" placeholder="密码" class="inp2"><span class="span2"></span>
+                            <div class="duanxin">
+                                <i></i>短信验证码登录
+                            </div>     
+                            <input type="submit" value="登录" class="btn">
+                            <div class="login_box">
+                                
+                                <label for="login_box_i">
+                                    <i id="login_box_i"></i>
+                                    记住华为密码
+                                </label>  
+                                <span id="login_box_span">更多</span>
+                            </div>
+                        </form>
+                        <div class="registerTip">
+                            <a href="register.html" id="registerTip_a1">注册账号</a>
+                            <a href="" id="registerTip_a2">忘记密码?</a>
+                        </div>
+                    </div>
+                
+                        <div class="otherlogin">
+                            <div class="otherlogin-top">
+                                <div class="line-left"></div>
+                                <span>其他方式登录</span>
+                                <div class="line-right"></div>
+                            </div>
+                            <div class="otherlogin-bottom">
+                                <a href=""><span id="login_span1"></span></a>
+                                <a href=""><span id="login_span2"></span></a>
+                                <a href=""><span id="login_span3"></span></a>
+                            </div>
+                        </div>
+                </div>
+                <!-- 扫描登录的盒子 -->
+            <div class="loginCenter_center2">
+                <div class="loginCenter2">
+                    <img src="images/login_erweima.png" alt="">
+                </div>
+                <div class="loginCenter2_help">
+                    <img src="images/qrCode-help.png" alt="">
+                </div>
+                <p id="logincenter_p1">使用<a href="">华为移动服务APP</a>扫一扫</p>
+                <p id="logincenter_p2">若您使用华为手机，请进入“设置”>“华为帐号”扫码登录。</p>
+            </div>  
+        </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div class="bottom">
+        <div class="contentbottom">
+            <div class="bottom_box1">
+                <a href="">华为账户用户协议</a>
+                <em>|</em>
+                <a href="">关于华为账号与隐私的声明</a>
+                <em>|</em>
+                <a href="">常见问题</a>
+            </div>
+            <div class="bottom_box2">
+                <p>Copyright © 2011-2018  华为软件技术有限公司  版权所有  保留一切权利  苏B2-20070200号 | 苏ICP备09062682号-9</p>
+            </div>
+        </div>    
+    </div>
+    <script src="js/ajax1.0.0.js"></script>
+    <script src="js/login_01.js"></script>
+    <script>
+        loginData1.init();
+    </script>
+    
+</body>
+</html>

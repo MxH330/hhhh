@@ -271,7 +271,7 @@ html,body{
     float: left;
     text-align: left;
 }
-.checkbox input[type="checkbox"]{
+#checkbox_1,#checkbox_2{
     margin-right: 10px;
     border: 0 none;
     display: inline-block;
@@ -283,6 +283,7 @@ html,body{
     font-size: 0;
     vertical-align: text-top;
     -webkit-appearance: none;
+    outline: none;
 }
 
 .shopcarTop_ul,.shopcarTop_ul1{
@@ -1060,4 +1061,81 @@ html,body{
 }
 .login_link a{
     color: #007dff;
+}
+.priceAllsum{
+    background: #fff;
+    min-width: 1200px;
+    position: fixed;
+    width: 100%;
+    z-index: 50;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 -4px 4px 0 hsla(0,0%,47%,.2);
+    height: 60px;
+}
+
+.priceAllsumbox{
+    width:1200px;
+    height: 60px;
+    line-height: 20px;
+    margin:0 auto;
+    position: relative;
+}
+.priceAllsumbox_left{
+    float: left;
+    width:135px;
+    height: 20px;
+    padding:20px 0;
+}
+#priceAllsumbox_btn{
+    font-size: 12px;
+    color:#000;
+    float: right;
+}
+.checkbox3{
+    height: 12px;
+    font-size: 12px;
+    line-height: 12px;
+    position: absolute;
+    left: 41px;
+    top:22px;
+}
+.priceAllsumbox_center{
+    float: right;
+    padding-right: 30px;
+    line-height: 28px;
+    text-align: right;
+}
+.priceAllsum_topbox1{
+    font-size: 14px;
+    color:#000;
+}
+.priceAllsum_topbox2{
+    font-size: 12px;
+    color:#ccc;
+}
+.priceAllsumboxBtn{
+    width:180px;
+    height: 60px;
+    float: right;
+}
+.priceAllsumboxBtn a{
+    width: 180px;
+    height: 60px;
+    line-height: 60px;
+    display: block;
+    background: #ca151e;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+}
+#priceAllsum_span1{
+    font-size: 16px;
+    color:#ca151e;
+}
+#priceAllsum_span2{
+    color:#ca151e;
+}
+#priceAllsum_span3{
+    color:#000;
 }

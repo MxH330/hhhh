@@ -60,8 +60,6 @@ var shopCar = (function () {
             for(var i = 0; i <  this.shopList.length; i++) {
                 for(var j = 0; j < this.carList.length; j++) {
                     if(this.shopList[i].color == this.carList[j].color) {
-                        _this.$ele.name = this.carList[j].color;
-                        console.log(_this.$ele.name);
                         Object.assign(this.carList[j], this.shopList[i]);  // Object.assign() 对象的方法，用来合并对象的方法
                         break;
                     }
@@ -80,20 +78,10 @@ var shopCar = (function () {
         // 把购物车数据渲染到页面中
         insertCarList: function (data) {
             var arr = [];
-            var shop;
-            console.log(this.shopList)
-            arr.push(`<div class="shopcarTop">
-            <label for="checkbox_1" class="checkbox"><input type="checkbox" id="checkbox_1">全选</label>
-                <ul class="shopcarTop_ul">
-                    <li>商品</li>
-                    <li>单价</li>
-                    <li>数量</li>
-                    <li>小计</li>
-                    <li>操作</li>
-                </ul>
-            </div>`);
+            console.log(this.shopList);
+            
             for (var i = 0; i < data.length; i++) {
-            arr.push(`
+            arr.unshift(`
             <div class="shopcarCenter">
                 <div class="shopCar_jiange"></div>
                 <div class="shops01">
@@ -104,7 +92,7 @@ var shopCar = (function () {
                                 <ul class="shopcarTop_ul1">
                                     <li><a href="" class="shopcarTop_ul1_a1">${data[i].name}</a></li>
                                     <li>
-                                        <p>${data[i].price}</p>
+                                        <p class = "priceSmall">${data[i].price}</p>
                                         <s>￥2599</s>
                                     </li>
                                     <li>
@@ -117,7 +105,7 @@ var shopCar = (function () {
                                         </div>
                                     </li>
                                     <li>
-                                        <b>￥${data[i].countPrice}</b>
+                                        <b class = "priceSum">￥${data[i].countPrice}</b>
                                         <p>省￥300.00<p>
                                     </li>
                                     <li>
@@ -157,6 +145,16 @@ var shopCar = (function () {
                 </div>
             </div>`);
             }
+            arr.unshift(`<div class="shopcarTop">
+            <label for="checkbox_1" class="checkbox"><input type="checkbox" id="checkbox_1">全选</label>
+                <ul class="shopcarTop_ul">
+                    <li>商品</li>
+                    <li>单价</li>
+                    <li>数量</li>
+                    <li>小计</li>
+                    <li>操作</li>
+                </ul>
+            </div>`);
             this.$ele.innerHTML = arr.join('');
         },
         //当本地存储为 "[]" 时，触发

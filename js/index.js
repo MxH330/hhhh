@@ -120,11 +120,16 @@ var indexData = (function(){
             this.$pageRight_a2 = document.querySelector('.pageRight_a2');
             this.$pageRight_a3 = document.querySelector('.pageRight_a3');
 
+            // 主页中的购物车获取DOM对象
+            this.$shopCar = document.querySelector('.shopCar');
+            this.$nav_a2_2_span = document.querySelector('#nav_a2_2_span');
             // 调用函数
             this.event();
             this.autoPlay(this.index);
             this.newsautoPlay(this.newsindex);
             this.MinautoPlay(this.Minindex);
+            this.getShopListData();
+
         },
         event:function(){
             var _this = this;
@@ -499,6 +504,85 @@ var indexData = (function(){
             this.count = count;
             move1(this.$friendslink,'left',-157 * this.count,500)
         },
+
+        // 主页的购物车
+        // （1）获取商品信息,从json对象中获取数据
+        getShopListData: function () {
+            var _this = this;
+            var params = {
+                success: function (data) {
+                    _this.shopList = data.data;
+                    _this.getCarList();
+                }
+            }
+            sendAjax('json/shop01.json', params);
+        },
+        // （2）获取本地存储，与json对象中传过来的数据进行比较
+        getCarList: function () {
+            var _this = this;
+            this.carList = JSON.parse(localStorage.shopList);
+            console.log(this.carList);
+            for(var i = 0; i <  this.shopList.length; i++) {
+                for(var j = 0; j < this.carList.length; j++) {
+                    if(this.shopList[i].color == this.carList[j].color) {
+                        // Object.assign() 对象的方法，用来合并对象的方法
+                        Object.assign(this.carList[j], this.shopList[i]);  
+                        break;
+                    }
+                }
+            }
+            console.log(this.carList);
+            this.countPrice(this.carList);
+            this.insertCarList(this.carList);
+        },
+        // (3)计算总价
+        countPrice: function(arr) {
+            arr = arr.map(x => {
+                return x.countPrice = x.price * x.count;
+            })
+        },
+        //将购物车的数据渲染到主页面上
+        insertCarList:function(data){
+            var arr = [];
+            var a = data.length;
+            arr.push(`<div class="minshopCarbottom">
+            <p>总计 :</p>
+            <div class="minshopCarbottom_left">
+                <span id="minshopCarbottom_left_span">￥0.00</span>
+                <s id="minshopCarbottom_left_s">￥0.00</s>
+            </div>
+            <div class="minshopCarbottom_right">结算</div>
+            </div>`)
+            for(var i = 0; i<data.length; i++){
+                arr.unshift(`<div class="minshopCar">
+                <div class="minshopCar_top">
+                    <i></i>
+                    <img src=${data[i].img} alt="">
+                    <div class="shopcar_shop">
+                        <a href="" id="shopcar_name1">${data[i].name}</a>
+                        <p>
+                            <s>￥2599</s>
+                            <span id="shopcar_Span1">￥${data[i].price}</span>
+                            <span id="shopcar_Span2">x${data[i].count}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="minshopCar_bottom">
+                    <p id="minshopCar_bottomP1">配</p>
+                    <div class="minshopCar_box">
+                        <span>荣耀运动臂带（灰色）x1</span>
+                        <span>荣耀畅玩 运动手环 A2 心率监测（魔法黑) x1</span>
+                    </div>
+                </div>
+            </div>`)
+        }
+            this.$nav_a2_2_span.innerHTML = a;
+            this.$shopCar.innerHTML = arr.join('');
+        }
+
+
+
+
        
         
     }

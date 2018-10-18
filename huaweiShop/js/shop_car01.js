@@ -102,11 +102,10 @@ var shopCar01 = (function(){
                 for(var i = 0; i < a.length; i++){
                     var num = a[i].parentNode.nextElementSibling.firstElementChild.lastElementChild.children[3].firstElementChild.innerHTML.replace("￥",'');
                     arr.push(num);
-                    _this.arr = arr;
                 }
                             
                 var sum = 0;
-                for(var j = 0; j < _this.arr.length; j++){
+                for(var j = 0; j < arr.length; j++){
                     if(arr[j] == undefined){
                         sum = "0.00";
                     }

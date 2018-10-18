@@ -624,11 +624,6 @@ var indexData = (function(){
                 this.$nav_a1_1.innerHTML = `注册`;
             }
         }
-
-
-
-
-       
-        
+   
     }
 }())

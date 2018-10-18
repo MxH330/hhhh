@@ -44,7 +44,7 @@ var loginData = (function(){
                 _this.$login.style.left = '50%';
                 _this.$login.style.margin = '-317px,0,0,-250px'
             }
-            this.$login_headerSpan.onclick = function(){
+            this.$login_headerSpan.onmousedown = function(){
                 _this.$backbox.style.display = 'none';
                 _this.$login.style.display = 'none';
             }

@@ -4,6 +4,7 @@ var loginData = (function(){
             // 主页头部点击事件
             this.$header = document.querySelector('.header');
             this.$nav_a1 = this.$header.querySelector('#nav_a1');
+            this.$nav_a1_1 = this.$header.querySelector('#nav_a1_1');
             this.$backbox = document.querySelector('.backbox');
             this.$login = document.querySelector('.login');
             this.$login_headerSpan = document.querySelector('.login_headerSpan');
@@ -141,31 +142,39 @@ var loginData = (function(){
                 e = e || window.event;
                 var val = _this.$inp1.value;
                 var _val = _this.$inp2.value;
-                var params = {
-                    method: "post",
-                    data: {
-                        username: val,
-                        password: _val
-                    },
-                    success: function (data) {
-                        console.log(data);
-                        if (data.msg == 200) {
-                            location.href = 'index1.html';
+                // 判断输入得用户密码是否为空
+                if(val.trim() == ''){
+                    _this.$span1.style.color = 'red';    
+                    _this.$span1.style.fontSize = 12 + 'px';
+                    _this.$span1.innerHTML = '*用户名不能为空';   
+                }else if(_val.trim() == ''){
+                    _this.$span2.innerHTML = '*密码不能为空';
+                }else{
+                    var params = {
+                        method: "post",
+                        data: {
+                            username: val,
+                            password: _val
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            if (data.msg == 200) {
+                                localStorage.username = val;
+                                _this.$nav_a1.innerHTML = `欢迎${localStorage.username}`;
+                                _this.$nav_a1_1.innerHTML = `注册`;
+                                location.reload();
+                            }
+                            if (data.msg == 101) {
+                            _this.$span2.style.color = 'red';
+                            _this.$span2.innerHTML = '*密码错误';                            
+                            _this.$span1.innerHTML = '';
+                            }
+    
                         }
-                        if (data.msg == 101) {
-                        _this.$span2.style.color = 'red';
-                        _this.$span2.innerHTML = '*密码错误';                            
-                        _this.$span1.innerHTML = '';
-                        }
-                        if (data.msg == 300) {
-                            alert('用户不存在,请注册！')
-                            location.href = 'register.html';
-                        }
-
                     }
-                }
-                // 当其他地方引用时需注意改变url 的地址或者不要将php文件放入一个文件夹，直接跟html同级，这样不用这样写，直接  xxx.php就行
-                sendAjax('http://localhost/huaweiStore/php/login.php', params);
+                    // 当其他地方引用时需注意改变url 的地址或者不要将php文件放入一个文件夹，直接跟html同级，这样不用这样写，直接  xxx.php就行
+                    sendAjax('http://localhost/github/huaweiStore/php/login.php', params);
+                    }
                 }
 
                 // 登录页面中的记住密码的勾

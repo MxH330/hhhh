@@ -54,54 +54,71 @@
     <!-- 中间内容部分 -->
     <div class="content">
         <div class="contentbox">
-            <!-- 登录提示部分 -->
-            <div class="login-prompt">
-                <i></i>您还没有登录！登录后可查看之前加入的商品 
-                <a href="login.html">登录</a>
-            </div>
-            
-            <div class="shop_car">
-                <!-- 购物车部分 -->
-                <span id = "shop_carSpan"></span>
-                <p id="shop_carPP">您的购物车了什么也没有哦~</p>
-                <a href="index1.html" id="shop_carAA">去逛逛</a>
-            </div>
-
-            <div class="hotsell">
-                热销推荐
-            </div>
-            <div class="hotsell_shop">
-                <div class="hotsell_left">
-                    <i></i>
+            <div class="contentbox1">
+                <!-- 登录提示部分 -->
+                <div class="login-prompt">
+                    <i></i>您还没有登录！登录后可查看之前加入的商品 
+                    <a href="login.html">登录</a>
                 </div>
-                <ul class="hotsell_list">
-                    <li><a href="">
-                        <img src="images/shop01.jpg" alt=""><p>华为nova3</p></a>
-                        <div class="price">￥2799</div>
-                    </li>
-                    <li><a href="">
-                        <img src="images/shop02.jpg" alt=""><p>荣耀10 AI摄影手机</p></a>
-                        <div class="price">￥2299</div>                        
-                    </li>
-                    <li><a href="">
-                        <img src="images/shop01.jpg" alt=""><p>华为nova3</p></a>
-                        <div class="price">￥999</div>
-                    </li>
-                    <li><a href="">
-                        <img src="images/shop03.jpg" alt=""><p>华为nova3</p></a>
-                        <div class="price">￥1399</div>
-                    </li>
-                    <li><a href="">
-                        <img src="images/shop04.jpg" alt=""><p>华为nova3</p></a>
-                        <div class="price">￥4988</div>
-                    </li>
-                    <li><a href="">
-                        <img src="images/shop05.jpg" alt=""><p>华为nova3</p></a>
-                        <div class="price">￥229</div>
-                    </li>
-                </ul>
-                <div class="hotsell_right">
-                    <i></i>
+                
+                <div class="shop_car">
+                    <!-- 购物车部分 -->
+                    <span id = "shop_carSpan"></span>
+                    <p id="shop_carPP">您的购物车了什么也没有哦~</p>
+                    <a href="index1.html" id="shop_carAA">去逛逛</a>
+                </div>
+                <div class="priceAllsum1">
+                        <div class="priceAllsumbox">
+                            <div class="priceAllsumbox_left">
+                                <label for="checkbox_2" class="checkbox3"><input type="checkbox" id="checkbox_1_2">全选</label>
+                                <a href="javascript:void(0)" id="priceAllsumbox_btn">删除</a>
+                            </div>
+                            <div class="priceAllsumboxBtn">
+                                    <a href="javascript:void(0)">立即结算</a>
+                                </div>
+                            <div class="priceAllsumbox_center">
+                                <div class="priceAllsum_topbox1">总计 : <span id="priceAllsum_span1">￥ 0.00</span></div>
+                                <div class="priceAllsum_topbox2">已选择<span id="priceAllsum_span2">0</span>件商品</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                <div class="hotsell">
+                    热销推荐
+                </div>
+                <div class="hotsell_shop">
+                    <div class="hotsell_left">
+                        <i></i>
+                    </div>
+                    <ul class="hotsell_list">
+                        <li><a href="">
+                            <img src="images/shop01.jpg" alt=""><p>华为nova3</p></a>
+                            <div class="price">￥2799</div>
+                        </li>
+                        <li><a href="">
+                            <img src="images/shop02.jpg" alt=""><p>荣耀10 AI摄影手机</p></a>
+                            <div class="price">￥2299</div>                        
+                        </li>
+                        <li><a href="">
+                            <img src="images/shop01.jpg" alt=""><p>华为nova3</p></a>
+                            <div class="price">￥999</div>
+                        </li>
+                        <li><a href="">
+                            <img src="images/shop03.jpg" alt=""><p>华为nova3</p></a>
+                            <div class="price">￥1399</div>
+                        </li>
+                        <li><a href="">
+                            <img src="images/shop04.jpg" alt=""><p>华为nova3</p></a>
+                            <div class="price">￥4988</div>
+                        </li>
+                        <li><a href="">
+                            <img src="images/shop05.jpg" alt=""><p>华为nova3</p></a>
+                            <div class="price">￥229</div>
+                        </li>
+                    </ul>
+                    <div class="hotsell_right">
+                        <i></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -279,7 +296,7 @@
         </div>
 
         <!-- 底边隐藏的结算的盒子,当到了一定距离后出现 -->
-        <div class="priceAllsum">
+        <div class="priceAllsum" id="priceAllsum_box">
             <div class="priceAllsumbox">
                 <div class="priceAllsumbox_left">
                     <label for="checkbox_2" class="checkbox3"><input type="checkbox" id="checkbox_1">全选</label>
@@ -289,8 +306,8 @@
                         <a href="javascript:void(0)">立即结算</a>
                     </div>
                 <div class="priceAllsumbox_center">
-                    <div class="priceAllsum_topbox1">总计 : <span id="priceAllsum_span1">￥ 0.00</span></div>
-                    <div class="priceAllsum_topbox2">已选择<span id="priceAllsum_span2">0</span>件商品，优惠 <span id="priceAllsum_span3">￥0.00</span></div>
+                    <div class="priceAllsum_topbox1">总计 : <span id="priceAllsum_span3">￥ 0.00</span></div>
+                    <div class="priceAllsum_topbox2">已选择<span id="priceAllsum_span4">0</span>件商品</div>
                 </div>
                 
             </div>
@@ -305,10 +322,9 @@
         </script>
         <script src="js/shop_car01.js"></script>
         <script>
-            var shopList = localStorage.shopList;
-            setTimeout(() => {
-                shopCar01.init('.shop_car');
-            },0.1 );
+            setTimeout(function(){
+                shopCar01.init();
+            },1)
         </script>
 </body>
 </html>

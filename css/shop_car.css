@@ -271,7 +271,7 @@ html,body{
     float: left;
     text-align: left;
 }
-#checkbox_1,#checkbox_2{
+#checkbox_1_1,#checkbox_1,#checkbox_2,#checkbox_1_2{
     margin-right: 10px;
     border: 0 none;
     display: inline-block;
@@ -1073,7 +1073,14 @@ html,body{
     box-shadow: 0 -4px 4px 0 hsla(0,0%,47%,.2);
     height: 60px;
 }
-
+.priceAllsum1{
+    background: #fff;
+    min-width: 1200px;
+    width: 100%;
+    height: 60px;
+    margin-top: 20px;
+    /* display: none; */
+}
 .priceAllsumbox{
     width:1200px;
     height: 60px;
@@ -1129,13 +1136,11 @@ html,body{
     color: #fff;
     text-align: center;
 }
-#priceAllsum_span1{
+#priceAllsum_span1,#priceAllsum_span3{
     font-size: 16px;
     color:#ca151e;
+    font-weight: bold;
 }
-#priceAllsum_span2{
+#priceAllsum_span2,#priceAllsum_span4{
     color:#ca151e;
-}
-#priceAllsum_span3{
-    color:#000;
 }

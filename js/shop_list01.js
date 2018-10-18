@@ -22,14 +22,36 @@ var   shop_list01 = (function(){
             // 主页中的购物车获取DOM对象
             this.$shopCar = document.querySelector('.shopCar');
             this.$nav_a2_2_span = document.querySelector('#nav_a2_2_span');
-
+             //点击注销进行注销
+             this.$navBox = document.querySelector('.navBox');
+             this.$nav_a1 = document.querySelector('#nav_a1');
+             this.$nav_a1_1 = document.querySelector('#nav_a1_1');
             //调用函数
+            this.userData();
             this.getShopListData();
             this.event();
             this.getShopListData1();
         },
         event: function() {
             var _this = this;
+
+            //点击注销进行注销
+            this.$navBox.onclick = function(e){
+                e = e || window.event;
+                var target = e.target || e.srcElement;
+                if(target.innerHTML == "注销"){
+                    localStorage.removeItem("username");
+                    _this.$nav_a1.innerHTML = "请登录";
+                    target.innerHTML = "注册";
+                    _this.$nav_a1_1.href = "javascript:void(0)";
+                }
+                if(target.innerHTML == "注册"){
+                    setTimeout(() => {
+                        _this.$nav_a1_1.href = "register.html";
+                    }, 1);
+                }
+            } 
+
             //点击加减改变input中的值，从而改变需要购买的数量
             this.$choicebtn_a1.onclick = function(e){
                 e = e || window.event;
@@ -48,8 +70,7 @@ var   shop_list01 = (function(){
                     }
                 }
             }
-            
-            
+                    
             // 点击每个不同的手机颜色，将加入购物车设置属性为所对应的coloerdedezhi 
             this.$Li01.onclick = function(e){
                 e = e || window.event;
@@ -108,9 +129,14 @@ var   shop_list01 = (function(){
                     //获取数量框里面的值
                     var count = tongji.firstElementChild.value;
                     console.log(count);
-                    _this.addCar(color, count);
-                    _this.$back.style.display = 'block';
-                    _this.$shopcar_box.style.display = 'block';
+                    var userid = localStorage.username;
+                    if(userid == undefined){
+                        alert("请先登录！");
+                    }else{
+                        _this.addCar(color, count,userid);
+                        _this.$back.style.display = 'block';
+                        _this.$shopcar_box.style.display = 'block';
+                    }
                 }
             }, false);
             this.$shopcar_a1.onclick = function(e){
@@ -130,11 +156,12 @@ var   shop_list01 = (function(){
             sendAjax('json/shop01.json', params);
         },
         // 添加商品
-        addCar(color, count) {
+        addCar(color, count,userid) {
             var shopList = localStorage.shopList || '[]';
             shopList = JSON.parse(shopList);
+            console.log(shopList);
             for(var i = 0; i < shopList.length; i++) {
-                if(shopList[i].color === color) {
+                if(shopList[i].color == color && shopList[i].userid == localStorage.username) {
                     // 商品已经存在
                     shopList[i].count = Number(shopList[i].count) + Number(count);
                     break;
@@ -142,7 +169,7 @@ var   shop_list01 = (function(){
             }
             if(i === shopList.length) {
                 // 商品不存在
-                shopList.push({color:color, count: count});
+                shopList.push({color:color, count: count, userid: userid});
 
             }
             localStorage.shopList = JSON.stringify(shopList);
@@ -158,25 +185,27 @@ var   shop_list01 = (function(){
                     _this.getCarList();
                 }
             }
-            sendAjax('json/shop01.json', params);
+            sendAjax('http://localhost/github/huaweiStore/json/shop01.json', params);
         },
         // （2）获取本地存储，与json对象中传过来的数据进行比较
         getCarList: function () {
             var _this = this;
-            this.carList = JSON.parse(localStorage.shopList);
-            console.log(this.carList);
-            for(var i = 0; i <  this.shopList.length; i++) {
-                for(var j = 0; j < this.carList.length; j++) {
-                    if(this.shopList[i].color == this.carList[j].color) {
-                        // Object.assign() 对象的方法，用来合并对象的方法
-                        Object.assign(this.carList[j], this.shopList[i]);  
-                        break;
+            if(localStorage.shopList != "" && localStorage.username != undefined && localStorage.shopList != undefined){
+                this.carList = JSON.parse(localStorage.shopList);
+                console.log(this.carList);
+                for(var i = 0; i <  this.shopList.length; i++) {
+                    for(var j = 0; j < this.carList.length; j++) {
+                        if(localStorage.username == this.carList[j].userid && this.shopList[i].color == this.carList[j].color) {
+                            // Object.assign() 对象的方法，用来合并对象的方法
+                            Object.assign(this.carList[j], this.shopList[i]);  
+                            break;
+                        }
                     }
                 }
+                console.log(this.carList);
+                this.countPrice(this.carList);
+                this.insertCarList(this.carList);
             }
-            console.log(this.carList);
-            this.countPrice(this.carList);
-            this.insertCarList(this.carList);
         },
         // (3)计算总价
         countPrice: function(arr) {
@@ -195,7 +224,11 @@ var   shop_list01 = (function(){
             </div>
             <div class="minshopCarbottom_right">结算</div>
             </div>`)
+            var count = 0;
             for(var i = 0; i<data.length; i++){
+                if(data[i].userid == localStorage.username){
+                   count++;
+                    
                 arr.unshift(`<div class="minshopCar">
                 <div class="minshopCar_top">
                     <i></i>
@@ -218,8 +251,18 @@ var   shop_list01 = (function(){
                 </div>
             </div>`)
             }
-            this.$nav_a2_2_span.innerHTML = data.length;
+        }
+            this.$nav_a2_2_span.innerHTML = count;
             this.$shopCar.innerHTML = arr.join('');
+        },
+        userData:function(){
+            if(localStorage.username != undefined){
+                this.$nav_a1.innerHTML = `<span id="nav_a1">欢迎${localStorage.username}</span>`;
+                this.$nav_a1_1.innerHTML = `注销`;
+            }else{
+                this.$nav_a1.innerHTML = `<span id="nav_a1">请登录</span>`;
+                this.$nav_a1_1.innerHTML = `注销`;
+            }
         }
     }
 }())

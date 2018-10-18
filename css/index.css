@@ -1289,13 +1289,13 @@ body {
 .Leftbox{
     position: absolute;
     left: 0px;
-    top:550px;
+    top:640px;
     z-index: 1;
 }
 .Rightbox{
     position: absolute;
     right: 0px;
-    top:550px;
+    top:640px;
 }
 /* 主要内容部分 */
 .content {

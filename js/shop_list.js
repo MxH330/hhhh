@@ -127,10 +127,6 @@ var shop_list = (function(){
             img.style.left = -3 * x + 'px';
             img.style.top = -3 * y + 'px';
             }
-
-
-
-
         },
         showImage:function(index){
             console.log(index);

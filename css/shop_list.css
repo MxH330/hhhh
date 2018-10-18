@@ -1316,10 +1316,13 @@ html,body{
 }
 .product-img{
 	width:100%;
-	min-height: 5000px;
+    min-height: 5000px;
 }
 .product-img img{
-	width:100%;
+    width:100%;
+    /* display: block; */ 
+    /* 解决div图片中有间隙的bug */
+    vertical-align: top;
 }
 
 /* 给body添加模板 */

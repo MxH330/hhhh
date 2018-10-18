@@ -19,6 +19,7 @@ var indexData = (function(){
             this.$section = document.querySelector('.section');
             this.$searchBox_inp = this.$section.querySelector('.searchBox_inp');
             this.$placeholderBox = this.$section.querySelector('.placeholderBox');
+            
             // banner轮播图的点击事件的获取Dom对象
             this.$center = document.querySelector('.center');
             this.$centerBack = this.$center.querySelector('.centerBack');
@@ -123,12 +124,21 @@ var indexData = (function(){
             // 主页中的购物车获取DOM对象
             this.$shopCar = document.querySelector('.shopCar');
             this.$nav_a2_2_span = document.querySelector('#nav_a2_2_span');
+
+            //侧栏的两个广告
+            this.$Leftbox = document.querySelector('.Leftbox');
+            this.$rightbox = document.querySelector('.Rightbox');
+            //点击注销进行注销
+            this.$navBox = document.querySelector('.navBox');
+            this.$nav_a1 = document.querySelector('#nav_a1');
+            this.$nav_a1_1 = document.querySelector('#nav_a1_1');
             // 调用函数
+            this.userData();
+            this.getShopListData();
             this.event();
             this.autoPlay(this.index);
             this.newsautoPlay(this.newsindex);
             this.MinautoPlay(this.Minindex);
-            this.getShopListData();
 
         },
         event:function(){
@@ -136,6 +146,8 @@ var indexData = (function(){
             //顶部广告点击隐藏广告
             this.$removebtn.onclick = function(e){
                 _this.$Top_img.style.display = 'none';
+                _this.$Leftbox.style.top = 550 + 'px';
+                _this.$rightbox.style.top = 550 + 'px';
             }
             //搜索框的input事件
             this.$searchBox_inp.onfocus = function(){
@@ -144,6 +156,24 @@ var indexData = (function(){
             this.$searchBox_inp.onblur = function(){
                 _this.$placeholderBox.style.display = 'block';
             }
+            //点击注销进行注销
+            this.$navBox.onclick = function(e){
+                e = e || window.event;
+                var target = e.target || e.srcElement;
+                if(target.innerHTML == "注销"){
+                    localStorage.removeItem("username");
+                    _this.$nav_a1.innerHTML = "请登录";
+                    target.innerHTML = "注册";
+                    _this.$nav_a1_1.href = "javascript:void(0)";
+                    location.reload();
+                }
+                if(target.innerHTML == "注册"){
+                    setTimeout(() => {
+                        _this.$nav_a1_1.href = "register.html";
+                    }, 1);
+                }
+            } 
+
             //banner轮播图中的点击事件
             this.$tipbox.onmouseover = function(e){
                 e = e || window.event;
@@ -479,7 +509,7 @@ var indexData = (function(){
             clearInterval(timer2);
             timer2 = setInterval(_=>{
                 ++index;
-                console.log(index);
+                // console.log(index);
                 if(index > 5){
                     index = 0;
                     this.$news_R_ul.style.top = 0 + 'px';
@@ -520,20 +550,22 @@ var indexData = (function(){
         // （2）获取本地存储，与json对象中传过来的数据进行比较
         getCarList: function () {
             var _this = this;
-            this.carList = JSON.parse(localStorage.shopList);
-            console.log(this.carList);
-            for(var i = 0; i <  this.shopList.length; i++) {
-                for(var j = 0; j < this.carList.length; j++) {
-                    if(this.shopList[i].color == this.carList[j].color) {
-                        // Object.assign() 对象的方法，用来合并对象的方法
-                        Object.assign(this.carList[j], this.shopList[i]);  
-                        break;
+            if(localStorage.shopList != "" && localStorage.username != undefined && localStorage.shopList != undefined){
+                this.carList = JSON.parse(localStorage.shopList);
+                console.log(this.carList);
+                for(var i = 0; i <  this.shopList.length; i++) {
+                    for(var j = 0; j < this.carList.length; j++) {
+                        if(localStorage.username == this.carList[j].userid && this.shopList[i].color == this.carList[j].color ) {
+                            // Object.assign() 对象的方法，用来合并对象的方法
+                            Object.assign(this.carList[j], this.shopList[i]);  
+                            break;
+                        }
                     }
                 }
+                console.log(this.carList);
+                this.countPrice(this.carList);
+                this.insertCarList(this.carList);
             }
-            console.log(this.carList);
-            this.countPrice(this.carList);
-            this.insertCarList(this.carList);
         },
         // (3)计算总价
         countPrice: function(arr) {
@@ -544,7 +576,6 @@ var indexData = (function(){
         //将购物车的数据渲染到主页面上
         insertCarList:function(data){
             var arr = [];
-            var a = data.length;
             arr.push(`<div class="minshopCarbottom">
             <p>总计 :</p>
             <div class="minshopCarbottom_left">
@@ -553,7 +584,11 @@ var indexData = (function(){
             </div>
             <div class="minshopCarbottom_right">结算</div>
             </div>`)
+            var count = 0;
             for(var i = 0; i<data.length; i++){
+                if(data[i].userid == localStorage.username){
+                   count++;
+                    
                 arr.unshift(`<div class="minshopCar">
                 <div class="minshopCar_top">
                     <i></i>
@@ -575,9 +610,19 @@ var indexData = (function(){
                     </div>
                 </div>
             </div>`)
+            }
         }
-            this.$nav_a2_2_span.innerHTML = a;
+            this.$nav_a2_2_span.innerHTML = count;
             this.$shopCar.innerHTML = arr.join('');
+        },
+        userData:function(){
+            if(localStorage.username != undefined){
+                this.$nav_a1.innerHTML = `<span id="nav_a1">欢迎${localStorage.username}</span>`;
+                this.$nav_a1_1.innerHTML = `注销`;
+            }else{
+                this.$nav_a1.innerHTML = `<span id="nav_a1">请登录</span>`;
+                this.$nav_a1_1.innerHTML = `注册`;
+            }
         }
 
 

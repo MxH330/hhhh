@@ -2,7 +2,8 @@ var shopCar = (function () {
     var $shopcar = $('.shop_car');
     return {
         init: function (ele) {
-            this.$ele = document.querySelector(ele);       
+            this.$ele = document.querySelector(ele);   
+            this.$shopcar = document.querySelector('.shop_car');    
             this.event();
             this.getShopListData();
         },
@@ -55,19 +56,22 @@ var shopCar = (function () {
         getCarList: function () {
             var _this = this;
             // [{id: 1, count:2}, {id: 2, count: 10}]
-            this.carList = JSON.parse(localStorage.shopList);
-            console.log(this.carList);
-            for(var i = 0; i <  this.shopList.length; i++) {
-                for(var j = 0; j < this.carList.length; j++) {
-                    if(this.shopList[i].color == this.carList[j].color) {
-                        Object.assign(this.carList[j], this.shopList[i]);  // Object.assign() 对象的方法，用来合并对象的方法
-                        break;
+            if(localStorage.shopList != "" && localStorage.username != undefined && localStorage.shopList != undefined){
+                this.carList = JSON.parse(localStorage.shopList);
+                console.log(this.carList);
+                console.log(this.shopList);
+                console.log(localStorage.username);
+                for(var i = 0; i <  this.shopList.length; i++) {
+                    for(var j = 0; j < this.carList.length; j++) {
+                        if(localStorage.username == this.carList[j].userid && this.shopList[i].color == this.carList[j].color ) {
+                            Object.assign(this.carList[j], this.shopList[i]);  // Object.assign() 对象的方法，用来合并对象的方法
+                            break;
+                        }
                     }
                 }
+                this.countPrice(this.carList);
+                this.insertCarList(this.carList);
             }
-            console.log(this.carList);
-            this.countPrice(this.carList);
-            this.insertCarList(this.carList);
         },
         // 计算总价
         countPrice: function(arr) {
@@ -78,98 +82,108 @@ var shopCar = (function () {
         // 把购物车数据渲染到页面中
         insertCarList: function (data) {
             var arr = [];
-            console.log(this.shopList);
-            
+            // var shopList = localStorage.shopList;
+            // shopList = JSON.parse(shopList);
+            // console.log(shopList);
             for (var i = 0; i < data.length; i++) {
-            arr.unshift(`
-            <div class="shopcarCenter">
-                <div class="shopCar_jiange"></div>
-                <div class="shops01">
-                    <label for="checkbox_2" class="checkbox1"><input type="checkbox" id="checkbox_2"></label>
-                    <div class="shops01detail">
-                            <div class="shops01box">
-                                <a href="" id="shopcar_a1"><img src=${data[i].img} alt=""></a> 
-                                <ul class="shopcarTop_ul1">
-                                    <li><a href="" class="shopcarTop_ul1_a1">${data[i].name}</a></li>
-                                    <li>
-                                        <p class = "priceSmall">${data[i].price}</p>
-                                        <s>￥2599</s>
-                                    </li>
-                                    <li>
-                                        <div class="choicebtnLeft">
-                                            <input type="text" id="choicebtn_inp" value="${data[i].count}">
-                                            <p>
-                                                <a href="javascript:void(0)"  id="choicebtn_a1">+</a>
-                                                <a href="javascript:void(0)"  id="choicebtn_a2">-</a>
-                                            </p>
+                    if(data[i].userid == localStorage.username){
+                        arr.unshift(`
+                        <div class="shopcarCenter">
+                            <div class="shopCar_jiange"></div>
+                            <div class="shops01">
+                                <label for="checkbox_2" class="checkbox1"><input type="checkbox" id="checkbox_2"></label>
+                                <div class="shops01detail">
+                                        <div class="shops01box">
+                                            <a href="" id="shopcar_a1"><img src=${data[i].img} alt=""></a> 
+                                            <ul class="shopcarTop_ul1">
+                                                <li><a href="" class="shopcarTop_ul1_a1">${data[i].name}</a></li>
+                                                <li>
+                                                    <p class = "priceSmall">${data[i].price}</p>
+                                                    <s>￥2599</s>
+                                                </li>
+                                                <li>
+                                                    <div class="choicebtnLeft">
+                                                        <input type="text" id="choicebtn_inp" value="${data[i].count}">
+                                                        <p>
+                                                            <a href="javascript:void(0)"  id="choicebtn_a1">+</a>
+                                                            <a href="javascript:void(0)"  id="choicebtn_a2">-</a>
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <b class = "priceSum">￥${data[i].countPrice}</b>
+                                                    <p>省￥300.00<p>
+                                                </li>
+                                                <li>
+                                                    <button class = "removeshop">删除</button>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <b class = "priceSum">￥${data[i].countPrice}</b>
-                                        <p>省￥300.00<p>
-                                    </li>
-                                    <li>
-                                        <button class = "removeshop">删除</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        
-                        <div class="shops01data">
-                            <div class="shops01data_top">
-                                <h3>服务</h3>
-                                <ul class="shopcardata_ul">
-                                    <li><span id="shopcardata_ul_span1">延长服务宝</span><span>延长服务宝1年</span></li>
-                                    <li><span>￥158.00</span></li>
-                                    <li>x<span>1</span></li>
-                                    <li>￥158.00</li>
-                                    <li></li>
-                                </ul>
-                            </div>
-                            <div class="shopCar_jiange01"></div>
-                            <div class="shops01data_bottom">
-                                <h3>配</h3>
-                                <div class="shops01box2">
-                                    <ul class="shopcardata_ul1">
-                                        <li><img src="images/min-img02.jpg" alt=""><span id="shopcardata_ul1_span">荣耀运动臂带(灰色)灰色</span></li>
-                                        <li><span id="shopcardata_ul1_span2">x1</span></li>
-                                    </ul>
-                                    <ul class="shopcardata_ul2">
-                                        <li><img src="images/min-img01.jpg" alt=""><span id="shopcardata_ul1_span">荣耀畅玩 运动手环 A2 心率监测(魔法黑) 魔法黑</span></li>
-                                        <li><span id="shopcardata_ul1_span2">x1</span></li>
-                                    </ul>
+                                    
+                                    <div class="shops01data">
+                                        <div class="shops01data_top">
+                                            <h3>服务</h3>
+                                            <ul class="shopcardata_ul">
+                                                <li><span id="shopcardata_ul_span1">延长服务宝</span><span>延长服务宝1年</span></li>
+                                                <li><span>￥158.00</span></li>
+                                                <li>x<span>1</span></li>
+                                                <li>￥158.00</li>
+                                                <li></li>
+                                            </ul>
+                                        </div>
+                                        <div class="shopCar_jiange01"></div>
+                                        <div class="shops01data_bottom">
+                                            <h3>配</h3>
+                                            <div class="shops01box2">
+                                                <ul class="shopcardata_ul1">
+                                                    <li><img src="images/min-img02.jpg" alt=""><span id="shopcardata_ul1_span">荣耀运动臂带(灰色)灰色</span></li>
+                                                    <li><span id="shopcardata_ul1_span2">x1</span></li>
+                                                </ul>
+                                                <ul class="shopcardata_ul2">
+                                                    <li><img src="images/min-img01.jpg" alt=""><span id="shopcardata_ul1_span">荣耀畅玩 运动手环 A2 心率监测(魔法黑) 魔法黑</span></li>
+                                                    <li><span id="shopcardata_ul1_span2">x1</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                
                             </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>`);
-            }
-            arr.unshift(`<div class="shopcarTop">
-            <label for="checkbox_1" class="checkbox"><input type="checkbox" id="checkbox_1">全选</label>
-                <ul class="shopcarTop_ul">
-                    <li>商品</li>
-                    <li>单价</li>
-                    <li>数量</li>
-                    <li>小计</li>
-                    <li>操作</li>
-                </ul>
-            </div>`);
-            this.$ele.innerHTML = arr.join('');
+                        </div>`);
+                        }
+                    }
+                    if(localStorage.username != undefined){
+                        arr.unshift(`<div class="shopcarTop">
+                        <label for="checkbox_1" class="checkbox"><input type="checkbox" id="checkbox_1_1">全选</label>
+                            <ul class="shopcarTop_ul">
+                                <li>商品</li>
+                                <li>单价</li>
+                                <li>数量</li>
+                                <li>小计</li>
+                                <li>操作</li>
+                            </ul>
+                        </div>`);
+                    }else{
+                        this.$ele.innerHTML = `<span id = "shop_carSpan"></span>
+                        <p id="shop_carPP">您的购物车了什么也没有哦~</p>
+                        <a href="index1.html" id="shop_carAA">去逛逛</a>`;
+                    }
+                    this.$ele.innerHTML = arr.join('');
+   
         },
         //当本地存储为 "[]" 时，触发
         showNone:function(){
             var _this = this;
             this.shopList = localStorage.shopList;
             console.log(this.shopList);
-            if(this.shopList == "[]" || this.shopList == ''){
+            if(this.shopList == "[]" || this.shopList == '' || localStorage.username == undefined){
                 localStorage.shopList = "";
                 _this.$ele.innerHTML = `<span id = "shop_carSpan"></span>
                 <p id="shop_carPP">您的购物车了什么也没有哦~</p>
                 <a href="index1.html" id="shop_carAA">去逛逛</a>`;
             }
         }
-
+        
     }
 
 }())

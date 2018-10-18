@@ -8,21 +8,15 @@
     $username = $json -> username;
     $password = $json -> password;
     $coon = new mysqli("localhost", "root", "", "shop", "3306");
-    $sql = "select password from shop_huawei where username = '$username'";
+    $sql = "select * from shop_huawei WHERE username='$username' and  password='$password'";
     $result = $coon -> query($sql);
     $rows = $result -> fetch_assoc();
     if($rows) {
-        // 账号已存在
-        if($rows["password"] === $password){
-            $arr = array("msg" => 200);
-        }else{
-            $arr = array("msg" => 101);
-        }
-    } else {
-        //在登录页面时就帮你默认帮你注册
-        // $insertSql = "insert into shop_user (username, password,tel,sex,age) values ('$username', '$password','','','')";
-        // $result3 = $coon -> query($insertSql);
-        $arr = array("msg" => 300);
-    }
+        // 用户输入正确
+        $arr = array("msg"=>"200", "data"=>array("id"=>$rows["id"], "token"=>"1234567899", "atavar"=> "http://www.aaa.com/path/a.png"));
+      } else {
+        // 输入错误
+        $arr = array("msg" => "101");
+      }
     echo json_encode($arr);  
 ?>

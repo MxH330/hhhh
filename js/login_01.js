@@ -17,7 +17,10 @@ var loginData1 = (function(){
             this.$span1 = this.$form.querySelector('.span1');
             this.$span2 = this.$form.querySelector('.span2');
             this.$btn = this.$form.querySelector('.btn');
+            // 登录页面的密码
+            this.$login_box_i = this.$form.querySelector('#login_box_i');
             // 调用函数
+            this.count = 0;
             this.event();
         },
         event:function(){
@@ -52,13 +55,17 @@ var loginData1 = (function(){
                 var reg2 = /^[1-9a-zA-Z_]\w*@[a-zA-Z0-9]+(\.[a-zA-Z]{2,})+$/
                 if(reg1.test(_this.val) == true || reg2.test(_this.val) == true){
                     _this.$span1.style.color = 'green';
+                    _this.$span1.style.fontSize = 12 + 'px';
                     _this.$span1.innerHTML = '*用户名格式正确';
                     // _this.$span1.innerHTML =  '';
                 }else if(reg1.test(_this.val) == false || reg2.test(_this.val) == false){
-                    _this.$span1.style.color = 'red';                    
+                    _this.$span1.style.color = 'red';    
+                    _this.$span1.style.fontSize = 12 + 'px';
                     _this.$span1.innerHTML = '*用户名格式错误';
                 }
                 if(_this.val == ''){
+                    _this.$span1.style.color = 'red';    
+                    _this.$span1.style.fontSize = 12 + 'px';
                     _this.$span1.innerHTML = '*用户名不能为空';                    
                 }
             }
@@ -81,32 +88,53 @@ var loginData1 = (function(){
                 e = e || window.event;
                 var val = _this.$inp1.value;
                 var _val = _this.$inp2.value;
-                var params = {
-                    method: "post",
-                    data: {
-                        username: val,
-                        password: _val
-                    },
-                    success: function (data) {
-                        console.log(data);
-                        if (data.msg == 200) {
-                            alert('登录成功');
-                            location.href = 'index1.html';
+                // 判断输入得用户密码是否为空
+                if(val.trim() == ''){
+                    _this.$span1.style.color = 'red';    
+                    _this.$span1.style.fontSize = 12 + 'px';
+                    _this.$span1.innerHTML = '*用户名不能为空';   
+                }else if(_val.trim() == ''){
+                    _this.$span2.innerHTML = '*密码不能为空';
+                }else{
+                    var params = {
+                        method: "post",
+                        data: {
+                            username: val,
+                            password: _val
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            if (data.msg == 200) {
+                                localStorage.username = val;
+                                // _this.$nav_a1.innerHTML = `欢迎${localStorage.username}`;
+                                // _this.$nav_a1_1.innerHTML = `注册`;
+                                location.reload();
+                                location.href = "index1.html";
+                            }
+                            if (data.msg == 101) {
+                            _this.$span2.style.color = 'red';
+                            _this.$span2.innerHTML = '*密码错误';                            
+                            _this.$span1.innerHTML = '';
+                            }
+    
                         }
-                        if (data.msg == 101) {
-                        _this.$span2.style.color = 'red';
-                        _this.$span2.innerHTML = '*密码错误';                            
-                        _this.$span1.innerHTML = '';
-                        }
-                        if (data.msg == 300) {
-                            alert('用户不存在,请注册！')
-                            location.href = 'register.html';
-                        }
-
+                    }
+                    // 当其他地方引用时需注意改变url 的地址或者不要将php文件放入一个文件夹，直接跟html同级，这样不用这样写，直接  xxx.php就行
+                    sendAjax('http://localhost/github/huaweiStore/php/login.php', params);
                     }
                 }
-                // 当其他地方引用时需注意改变url 的地址或者不要将php文件放入一个文件夹，直接跟html同级，这样不用这样写，直接  xxx.php就行
-                sendAjax('http://localhost/huaweiStore/php/login.php', params);
+
+                // 登录页面中的记住密码的勾
+                this.$login_box_i.onclick = function(e){
+                    e = e || window.event;
+                    ++_this.count;
+                    if(_this.count % 2 != 0){
+                        _this.$login_box_i.style.backgroundImage= 'url(images/remeber.png)';
+                        _this.$login_box_i.style.backgroundSize = '100%,100%';
+                    }else{
+                        _this.$login_box_i.style.backgroundImage= 'url(images/offbutton.png)';
+                        _this.$login_box_i.style.backgroundSize = 'cover';
+                    }  
                 }
             
         },

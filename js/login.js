@@ -173,7 +173,7 @@ var loginData = (function(){
                         }
                     }
                     // 当其他地方引用时需注意改变url 的地址或者不要将php文件放入一个文件夹，直接跟html同级，这样不用这样写，直接  xxx.php就行
-                    sendAjax('http://localhost/github/huaweiStore/php/login.php', params);
+                    sendAjax('php/login.php', params);
                     }
                 }
 

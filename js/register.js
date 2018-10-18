@@ -243,7 +243,7 @@ var registerData = (function(){
                         }
                     }
                     // 当其他地方引用时需注意改变url 的地址或者不要将php文件放入一个文件夹，直接跟html同级，这样不用这样写，直接  xxx.php就行
-                    sendAjax('http://localhost/github/huaweiStore/php/login.php', params);
+                    sendAjax('php/register.php', params);
                 }   
             },false)
             document.addEventListener('keydown',function(e){
@@ -398,7 +398,7 @@ var registerData = (function(){
                         }
                     }
                     // 当其他地方引用时需注意改变url 的地址或者不要将php文件放入一个文件夹，直接跟html同级，这样不用这样写，直接  xxx.php就行
-                    sendAjax('http://localhost/github/huaweiStore/php/login.php', params);
+                    sendAjax('php/register.php', params);
                 }   
             }
             document.addEventListener('keydown',function(e){
@@ -498,7 +498,7 @@ var registerData = (function(){
                     }
                 }
                 // 当其他地方引用时需注意改变url 的地址或者不要将php文件放入一个文件夹，直接跟html同级，这样不用这样写，直接  xxx.php就行
-                sendAjax('http://localhost/huaweiStore/php/register1.php', params);
+                sendAjax('php/register1.php', params);
             }
         },
         // Email注册时后台验证用户是否存在
@@ -525,7 +525,7 @@ var registerData = (function(){
                     }
                 }
                 // 当其他地方引用时需注意改变url 的地址或者不要将php文件放入一个文件夹，直接跟html同级，这样不用这样写，直接  xxx.php就行
-                sendAjax('http://localhost/huaweiStore/php/register1.php', params);
+                sendAjax('register1.php', params);
             }
         }
         

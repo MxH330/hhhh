@@ -8,6 +8,7 @@ var   shop_list01 = (function(){
             this.$Li04 = this.$ele.querySelector('.right-choice01_04');
             this.$Li05 = this.$ele.querySelector('.right-choice01_05');
             this.$rightul = this.$ele.querySelector('.right-choice01UL');
+            this.$product_left_1 = document.querySelector('.product_left_1');
             this.$allLi = this.$rightul.children;
             this.$btn = this.$ele.querySelector('#choicebtn_a3');
             //点击购物车按钮后出现购物车弹窗，给body加上一层背景模板
@@ -80,6 +81,7 @@ var   shop_list01 = (function(){
                 _this.$allLi[3].id = 'none';
                 _this.$allLi[4].id = 'none';
                 _this.$Li01.id = 'active';
+                _this.$product_left_1.style.backgroundImage = "url(images/big01.jpg)";
             }
             this.$Li02.onclick = function(e){
                 e = e || window.event;
@@ -89,6 +91,7 @@ var   shop_list01 = (function(){
                 _this.$allLi[3].id = 'none';
                 _this.$allLi[4].id = 'none';
                 _this.$Li02.id = 'active';
+                _this.$product_left_1.style.backgroundImage = "url(images/big02_01.jpg)";
             }
             this.$Li03.onclick = function(e){
                 e = e || window.event;
@@ -98,6 +101,7 @@ var   shop_list01 = (function(){
                 _this.$allLi[3].id = 'none';
                 _this.$allLi[4].id = 'none';
                 _this.$Li03.id = 'active';
+                _this.$product_left_1.style.backgroundImage = "url(images/big03_01.jpg)";
             }
             this.$Li04.onclick = function(e){
                 e = e || window.event;
@@ -117,7 +121,26 @@ var   shop_list01 = (function(){
                 _this.$allLi[3].id = 'none';
                 _this.$Li05.id = 'active';
             }
-
+            $('.right-choice01UL li').click(function(){
+                if($(this).text() == '幻影紫'){
+                    $('#product_left_lunbo div').children("img").each(function(i){
+                        this.src = 'images/shop_detail02_0'+ (i+1) + '.jpg';
+                        this.align = '02';
+                    })
+                }
+                if($(this).text() == '幻影蓝'){
+                    $('#product_left_lunbo div').children("img").each(function(i){
+                        this.src = 'images/shop_detail_small0'+ i + '.jpg';
+                        this.align = '01';
+                    })
+                }
+                if($(this).text() == '幻夜黑'){
+                    $('#product_left_lunbo div').children("img").each(function(i){
+                        this.src = 'images/shop_detail03_0'+ (i+1) + '.jpg';
+                        this.align = '03';
+                    })
+                }
+            })
             this.$ele.addEventListener('click', function(e) {
                 e = e || window.event;
                 var target = e.target || e.srcElement;

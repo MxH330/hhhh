@@ -17,10 +17,12 @@ var shop_list = (function(){
             this.$placeholderBox = this.$section.querySelector('.placeholderBox');
             //放大镜中的获取DOM对象
             this.$product_left_lunbo = document.querySelector('#product_left_lunbo');
-            this.$smallImg = this.$product_left_lunbo.children;
+            this.$smallImg =  this.$product_left_lunbo.querySelectorAll('img');
+            console.log(this.$smallImg);
             //获取展示图片的盒子
             this.$product_left_1 = document.querySelector('.product_left_1');
             this.$product_left_2 = document.querySelector('#product_left_2');
+            this.$swiper_wrapper = document.querySelector('.swiper-wrapper');
             for(var i = 0; i < this.$smallImg.length;i++){
                 this.$smallImg[i].index = i;
             }
@@ -82,11 +84,29 @@ var shop_list = (function(){
                 _this.$placeholderBox.style.display = 'block';
             }
             //放大镜中的各种事件
-            this.$product_left_lunbo.onmouseover = function(e){
+            
+            this.$product_left_2.onmouseover = function(e){
                 e = e || window.event;
                 var target = e.target || e.srcElement;
                 if(target.align == '01'){
-                    _this.showImage(target.index);
+                    console.log(111111);
+                    _this.showImage1(target.index);
+
+                }
+            }
+            this.$product_left_lunbo.onmouseover = function(e){
+                e = e || window.event;
+                var target = e.target || e.srcElement;
+                if(target.align == '02'){
+                    _this.showImage2(target.index);
+
+                }
+            }
+            this.$swiper_wrapper.onmouseover = function(e){
+                e = e || window.event;
+                var target = e.target || e.srcElement;
+                if(target.align == '03'){
+                    _this.showImage3(target.index);
 
                 }
             }
@@ -128,7 +148,7 @@ var shop_list = (function(){
             img.style.top = -3 * y + 'px';
             }
         },
-        showImage:function(index){
+        showImage1:function(index){
             console.log(index);
             var _this = this;
             var src = this.$showBigImage.querySelector('img').getAttribute('src');
@@ -159,6 +179,70 @@ var shop_list = (function(){
             if(index == 6){
                 this.$product_left_1.style.backgroundImage = "url(images/big02.jpg)";
                 this.$showBigImage.querySelector('img').src = "images/big02.jpg";
+            }
+        },
+        showImage2:function(index){
+            var _this = this;
+            var src = this.$showBigImage.querySelector('img').getAttribute('src');
+            if(index == 0){
+                this.$product_left_1.style.backgroundImage = "url(images/big02_01.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big02_01.jpg";
+            }
+            if(index == 1){
+                this.$product_left_1.style.backgroundImage = "url(images/big02_02.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big02_02.jpg";
+            }
+            if(index == 2){
+                this.$product_left_1.style.backgroundImage = "url(images/big02_08.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big02_08.jpg";
+            }
+            if(index == 3){
+                this.$product_left_1.style.backgroundImage = "url(images/big02_02.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big02_02.jpg";
+            }
+            if(index == 4){
+                this.$product_left_1.style.backgroundImage = "url(images/big02_03.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big02_03.jpg";
+            }
+            if(index == 5){
+                this.$product_left_1.style.backgroundImage = "url(images/big02_01.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big02_01.jpg";
+            }
+            if(index == 6){
+                this.$product_left_1.style.backgroundImage = "url(images/big02_09.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big02_09.jpg";
+            }
+        },
+        showImage3:function(index){
+            var _this = this;
+            var src = this.$showBigImage.querySelector('img').getAttribute('src');
+            if(index == 0){
+                this.$product_left_1.style.backgroundImage = "url(images/big03_01.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big03_01.jpg";
+            }
+            if(index == 1){
+                this.$product_left_1.style.backgroundImage = "url(images/big03_02.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big03_02.jpg";
+            }
+            if(index == 2){
+                this.$product_left_1.style.backgroundImage = "url(images/big03_03.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big03_03.jpg";
+            }
+            if(index == 3){
+                this.$product_left_1.style.backgroundImage = "url(images/big03_04.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big03_04.jpg";
+            }
+            if(index == 4){
+                this.$product_left_1.style.backgroundImage = "url(images/big03_05.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big03_05.jpg";
+            }
+            if(index == 5){
+                this.$product_left_1.style.backgroundImage = "url(images/big03_06.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big03_06.jpg";
+            }
+            if(index == 6){
+                this.$product_left_1.style.backgroundImage = "url(images/big03_07.jpg)";
+                this.$showBigImage.querySelector('img').src = "images/big03_07.jpg";
             }
         }
     }

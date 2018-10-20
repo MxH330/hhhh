@@ -549,9 +549,13 @@ html,body{
 	/* margin-left: 5px; */
 	margin-right: 10px;
 }
+#shop_detail_smallImg1 img,#shop_detail_smallImg2 img,#shop_detail_smallImg3 img,#shop_detail_smallImg4 img,#shop_detail_smallImg5 img
+,#shop_detail_smallImg6 img,#shop_detail_smallImg7 img{
+    width:62px;
+    height: 62px;
+}   
 
-
-#shop_detail_smallImg1{
+/* #shop_detail_smallImg1{
 	background:url(../images/shop_detail_small.jpg)no-repeat;
 	background-size: 62px ,62px;
 }
@@ -577,7 +581,7 @@ html,body{
 }#shop_detail_smallImg7{
 	background:url(../images/shop_detail_small01.jpg) no-repeat;
 	background-size: 62px ,62px;
-}
+} */
 #shop_detail_smallImg1:hover{
 	border:1px solid #ca151d;
 }

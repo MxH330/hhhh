@@ -185,7 +185,7 @@ var   shop_list01 = (function(){
                     _this.getCarList();
                 }
             }
-            sendAjax('http://localhost/github/huaweiStore/json/shop01.json', params);
+            sendAjax('json/shop01.json', params);
         },
         // （2）获取本地存储，与json对象中传过来的数据进行比较
         getCarList: function () {
